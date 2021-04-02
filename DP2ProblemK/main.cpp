@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-bool check(long long i, long long j, long long m){
+bool check(long long i, long long j, long long m) {
   long long checker1 = -1, checker2 = -1;
 
   for (size_t k = 0; k < m; ++k) {
@@ -31,22 +31,13 @@ int main() {
 
   std::vector<std::vector<long long>> dp(n, std::vector<long long>(power2m));
 
-  for (auto& i : dp[0]) {
+  for (auto &i : dp[0]) {
     i = 1;
   }
-
-  /*std::vector<std::vector<bool>> d(power2n, std::vector<bool>(power2n));
-
-  for (long long i = 0; i < power2n; ++i) {
-    for (long long j = 0; j < power2n; ++j) {
-      d[i][j] = check(i, j);
-    }
-  }*/
 
   for (long long k = 1; k < n; ++k) {
     for (long long i = 0; i < power2m; ++i) {
       for (long long j = 0; j < power2m; ++j) {
-        //dp[k][i] = dp[k - 1][j] * d[j][i] + dp[k][i];
         if (check(i, j, m)) {
           dp[k][i] += dp[k - 1][j];
         }
